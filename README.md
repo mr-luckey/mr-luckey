@@ -12,7 +12,7 @@
 
 - 📫 How to reach me **enginer7299@gmail.com**
 
-- 📄 Know about my experiences [https://play.google.com/store/apps/dev?id=5122096282083078590](https://play.google.com/store/apps/dev?id=5122096282083078590)
+- 📄 My Google Play [https://play.google.com/store/apps/dev?id=5122096282083078590](https://play.google.com/store/apps/dev?id=5122096282083078590)
 
 - ⚡ Fun fact **Error Solving is my favorite hobby**
 
