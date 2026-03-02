@@ -1,5 +1,6 @@
-<h1 align="center">Hi 👋, I'm Naseer Ahmed</h1>
-<h3 align="center">Senior Flutter Developer | 3+ Years Experience | Cross-Platform Expert</h3>
+<h1 align="center">
+  <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20👋,%20I'm%20Naseer%20Ahmed;Senior%20Flutter%20Developer;3+%20Years%20Experience%20|%20Cross-Platform%20Expert&center=true&width=500&height=45">
+</h1>
 
 <p align="center">
   <a href="https://www.linkedin.com/in/naseer-ahmed-b17362229/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
@@ -9,8 +10,7 @@
 </p>
 
 <img align="right" alt="Coding" width="400" src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif" />
-
-## 👨‍💻 About Me
+ 👨‍💻 About Me
 
 I'm a **Senior Flutter Developer** with over 3 years of experience building high-performance, cross-platform mobile applications. I have a proven track record of leading technical initiatives, integrating complex backends (Node.js, MongoDB, Firebase), and delivering feature-complete apps used by **50,000+ active users**. I specialize in advanced state management (BLoC, GetX, Provider) and have successfully reduced crash rates by **25%+** through optimization and best practices.
 
@@ -18,7 +18,7 @@ I'm a **Senior Flutter Developer** with over 3 years of experience building high
 - 🌱 I’m currently learning **Sockets, GETX, and advanced Flutter patterns**  
 - 💬 Ask me about **Flutter, Dart, Firebase, State Management, API Integration, Google Play Store publishing**  
 - 📫 How to reach me: **enginer7299@gmail.com**  
-- ⚡ Fun fact: **Error solving is my favorite hobby!**
+- ⚡ Fun fact: **<span class="wave">👋</span> Error solving is my favorite hobby!**
 
 ---
 
@@ -86,19 +86,163 @@ I'm a **Senior Flutter Developer** with over 3 years of experience building high
 
 ## 🚀 Featured Projects
 
-Here are some of the apps I've built and published on the Google Play Store. All are crafted with clean code, robust architecture, and a focus on user experience.
+I’ve built and published several apps on the Google Play Store. Below are detailed descriptions of each project, including the goal, technical highlights, and the stack used.
 
-| Project | Description | Tech Stack |
-|---------|-------------|------------|
-| **[Pure Net VPN](https://play.google.com/store/apps/details?id=com.errorbite.PureNetVPN)** | A secure, fast VPN app with multiple servers and one-tap connect. Focus on privacy and minimal UI. | Flutter, BLoC, Firebase, VPN SDK |
-| **[Unblocked Me Pro](https://play.google.com/store/apps/details?id=com.appware.blocked)** | Proxy/VPN tool to access restricted content. Includes speed tests and smart server selection. | Flutter, GetX, Node.js, WireGuard |
-| **[Todo Xpert](https://play.google.com/store/apps/details?id=com.appware.ToDoXpert)** | Feature-rich task manager with reminders, categories, subtasks, and cloud sync. | Flutter, Provider, Hive, Firebase |
-| **[Cloud Spot Music](https://play.google.com/store/apps/details?id=com.appware.cloudSpot)** | Music streaming app with offline playback, playlists, and recommendations. | Flutter, BLoC, Firebase, ExoPlayer |
-| **[Deutsch Pro](https://play.google.com/store/apps/details?id=com.appwaretech.GermanLanguageLearningApp)** | Language learning app for German with lessons, quizzes, and progress tracking. | Flutter, GetX, SQLite, TTS |
-| **[XPTIDE Fitness - American Specialist]** | Personal training app with workout plans, video tutorials, and nutrition tips. | Flutter, Riverpod, Firebase, Stripe |
-| **[Care Pilot Pro]** | Healthcare assistant for medication reminders, appointment scheduling, and health tips. | Flutter, BLoC, Firestore, Notifications |
-| **[Kids Learning](https://play.google.com/store/apps/details?id=com.appware.kidlearning)** | Interactive educational app for children with ABCs, numbers, colors, and fun games. | Flutter, Provider, Lottie, SharedPreferences |
+---
 
+### **Pure Net VPN**  
+<div class="play-badge">
+  <a href="https://play.google.com/store/apps/details?id=com.errorbite.PureNetVPN">
+    <img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play"/>
+  </a>
+</div>
+
+**Goal:** Provide users with a fast, secure, and private VPN service that masks their IP, encrypts traffic, and allows access to geo‑restricted content. The app focuses on simplicity and reliability.
+
+**Technical Highlights:**
+- **VPN Integration:** Implemented native VPN protocols (OpenVPN, WireGuard) using platform channels to communicate with Android’s VpnService.  
+- **Server Selection:** Built a dynamic server list with ping‑based latency testing to recommend the fastest connection.  
+- **No‑Logs Policy:** Ensured no user data is stored by using Firebase only for crash reporting and analytics, not for tracking.  
+- **Connection Monitoring:** Real‑time status updates with graceful disconnection handling and auto‑reconnect.  
+- **Battery Optimization:** Minimized background battery drain by using WorkManager for periodic tasks and efficient state management.  
+
+**Tech Stack:** Flutter, BLoC, Firebase Analytics, OpenVPN, WireGuard, Platform Channels, WorkManager
+
+---
+
+### **Unblocked Me Pro**  
+<div class="play-badge">
+  <a href="https://play.google.com/store/apps/details?id=com.appware.blocked">
+    <img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play"/>
+  </a>
+</div>
+
+**Goal:** A brain‑teaser puzzle game that challenges players with hundreds of logic, memory, and problem‑solving levels. Designed for puzzle enthusiasts who enjoy increasingly complex spatial reasoning and pattern recognition tasks.
+
+**Technical Highlights:**
+- **Puzzle Engine:** Custom grid‑based logic with state persistence; supports multiple puzzle types (sliding blocks, match‑3, pattern memory, etc.).  
+- **Dynamic Level Generation:** Procedurally generated puzzles ensure endless replayability with adjustable difficulty.  
+- **Hint System:** Smart hint algorithm that provides progressive clues without giving away the full solution.  
+- **Progress Tracking:** Local database (SQLite) saves user progress, high scores, and unlocked levels across sessions.  
+- **Smooth Animations:** Flutter‑powered transitions, particle effects, and Lottie animations for engaging feedback.  
+- **Monetization:** Integrated Google Play Billing for purchasing additional puzzle packs; AdMob rewarded ads for extra hints or level skips.  
+- **Leaderboards & Achievements:** Google Play Games Services for global leaderboards and achievements to increase engagement.  
+
+**Tech Stack:** Flutter, GetX, SQLite, Google Play Billing, AdMob, Lottie, Google Play Games Services
+
+---
+
+### **Todo Xpert**  
+<div class="play-badge">
+  <a href="https://play.google.com/store/apps/details?id=com.appware.ToDoXpert">
+    <img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play"/>
+  </a>
+</div>
+
+**Goal:** A comprehensive task management app that helps users organize their daily life with reminders, categories, subtasks, and cloud synchronization across devices.
+
+**Technical Highlights:**
+- **Offline‑First Architecture:** Used Hive for local storage with automatic sync to Firebase when online.  
+- **Rich Task Features:** Support for recurring tasks, priority levels, attachments, and notes.  
+- **Notifications:** Local push notifications using Flutter Local Notifications plugin with custom scheduling.  
+- **Cloud Sync:** Firebase Auth for user login and Firestore for syncing tasks across devices.  
+- **State Management:** Provider with ChangeNotifier for efficient UI updates.  
+
+**Tech Stack:** Flutter, Provider, Hive, Firebase Auth, Firestore, Flutter Local Notifications, intl
+
+---
+
+### **Cloud Spot Music**  
+<div class="play-badge">
+  <a href="https://play.google.com/store/apps/details?id=com.appware.cloudSpot">
+    <img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play"/>
+  </a>
+</div>
+
+**Goal:** A music streaming app that lets users discover, play, and download songs. It includes playlist creation, offline mode, and personalized recommendations.
+
+**Technical Highlights:**
+- **Audio Playback:** Used `just_audio` and `audio_service` for background playback, notification controls, and lock screen controls.  
+- **Offline Storage:** Downloaded songs are encrypted and stored locally using flutter_downloader and file handling.  
+- **Recommendation Engine:** Firebase Cloud Functions analyze listening history and generate personalized playlists.  
+- **Playlist Management:** Users can create, edit, and share playlists; real‑time updates via Firestore.  
+- **Search & Filter:** Implemented full‑text search using Algolia for fast and relevant results.  
+
+**Tech Stack:** Flutter, BLoC, Firebase Storage, Firestore, just_audio, audio_service, Algolia, Cloud Functions
+
+---
+
+### **Deutsch Pro**  
+<div class="play-badge">
+  <a href="https://play.google.com/store/apps/details?id=com.appwaretech.GermanLanguageLearningApp">
+    <img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play"/>
+  </a>
+</div>
+
+**Goal:** Help beginners learn German through structured lessons, quizzes, and flashcards. The app is designed for self‑paced learning with progress tracking.
+
+**Technical Highlights:**
+- **Lesson Structure:** Content divided into categories (vocabulary, grammar, phrases) with interactive exercises.  
+- **Text‑to‑Speech:** Integrated TTS for correct pronunciation of German words.  
+- **Quiz Engine:** Multiple‑choice, fill‑in‑the‑blank, and listening quizzes with instant feedback and scoring.  
+- **Progress Tracking:** Used SQLite to store user progress and performance analytics.  
+- **Animations:** Engaging UI with Lottie animations and Rive for interactive elements.  
+
+**Tech Stack:** Flutter, GetX, SQLite, TTS, Rive, Lottie, shared_preferences
+
+---
+
+### **Kids Learning**  
+<div class="play-badge">
+  <a href="https://play.google.com/store/apps/details?id=com.appware.kidlearning">
+    <img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Google Play"/>
+  </a>
+</div>
+
+**Goal:** An educational app for toddlers and preschoolers to learn alphabets, numbers, shapes, colors, and more through fun games and activities.
+
+**Technical Highlights:**
+- **Interactive Games:** Drag‑and‑drop, matching, and tracing games tailored for young children.  
+- **Audio & Sound:** Used `audioplayers` for letter sounds, music, and encouraging feedback.  
+- **Parental Gate:** Added a simple math puzzle to prevent accidental purchases or exits.  
+- **Multilingual Support:** Localized content in multiple languages using `flutter_localizations`.  
+- **Progress Saving:** Saved game progress and unlocked levels using shared_preferences.  
+
+**Tech Stack:** Flutter, Provider, Lottie, audioplayers, shared_preferences, flutter_localizations
+
+---
+
+### **XPTIDE Fitness - American Specialist**  
+
+**Goal:** A personal training app offering custom workout plans, video demonstrations, and nutrition tips. Premium content is available via subscription.
+
+**Technical Highlights:**
+- **Workout Plans:** Dynamic generation of plans based on user goals (weight loss, muscle gain, etc.).  
+- **Video Player:** Used `video_player` and `Chewie` for smooth playback of exercise tutorials.  
+- **Subscription Management:** Integrated Stripe for one‑time payments and recurring subscriptions.  
+- **Progress Tracking:** Charts showing workout history and body measurements.  
+- **Firebase Backend:** Firestore for user data, Cloud Functions for payment processing.  
+
+**Tech Stack:** Flutter, Riverpod, Firebase Auth, Firestore, Stripe, video_player, Chewie, FL Chart
+
+*Note: This app is currently in private development and not yet published.*
+
+---
+
+### **Care Pilot Pro**  
+
+**Goal:** A healthcare assistant that helps users manage medications, appointments, and health tips. Includes caregiver mode for family members.
+
+**Technical Highlights:**
+- **Medication Reminders:** Customizable reminders with dosage instructions and refill alerts.  
+- **Appointment Scheduling:** Sync with device calendar and send notifications.  
+- **QR Code Scanning:** Scan medication labels to auto‑fill details.  
+- **Caregiver Mode:** Allow family members to monitor and manage the user’s schedule remotely.  
+- **Emergency Contacts:** Quick access to call or message emergency numbers.  
+
+**Tech Stack:** Flutter, BLoC, Firebase Cloud Messaging, Firestore, QR code scanning, flutter_local_notifications
+
+*Note: This app is in private development and not yet published.*
 
 ---
 
