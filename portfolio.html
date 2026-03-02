@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Naseer Ahmed · senior Flutter dev</title>
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- GSAP (for advanced animations) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <!-- Vanilla tilt for cards -->
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0c0f;
+      font-family: "Inter", sans-serif;
+      color: #edf2f7;
+      line-height: 1.5;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* custom cursor */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00f7ff;
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.2s ease;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 20px #00f7ff;
+      mix-blend-mode: difference;
+    }
+
+    /* background animated mesh */
+    .bg-orb {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 20% 50%, #1b3442 0%, #0a0c0f 50%);
+      filter: blur(80px);
+      animation: breathe 12s infinite alternate;
+    }
+    .bg-orb2 {
+      background: radial-gradient(circle at 80% 80%, #2d1b3a 0%, transparent 60%);
+      filter: blur(100px);
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      animation: drift 20s infinite alternate;
+    }
+
+    @keyframes breathe {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+    @keyframes drift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-5%, -5%) scale(1.1); }
+    }
+
+    main {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 5%;
+      position: relative;
+      z-index: 10;
+    }
+
+    section {
+      padding: 120px 0;
+      border-bottom: 1px solid rgba(0, 247, 255, 0.1);
+    }
+
+    /* glassmorphic cards */
+    .glass {
+      background: rgba(20, 30, 40, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 247, 255, 0.25);
+      border-radius: 40px;
+      box-shadow: 0 20px 40px -20px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,247,255,0.1) inset;
+      transition: all 0.3s ease;
+    }
+
+    .glass:hover {
+      border-color: #00f7ff;
+      box-shadow: 0 0 30px #00f7ff40, 0 20px 40px -10px #000;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      background: linear-gradient(135deg, #fff, #a0f0ff, #b794f4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 60px;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 120px;
+      height: 4px;
+      background: linear-gradient(90deg, #00f7ff, #b794f4);
+      border-radius: 4px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-content {
+      flex: 1 1 500px;
+    }
+
+    .hero-gif {
+      flex: 1 1 400px;
+      border-radius: 40px;
+      filter: drop-shadow(0 0 40px #00f7ff80);
+      animation: levitate 7s infinite ease-in-out;
+      max-width: 100%;
+    }
+
+    @keyframes levitate {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-25px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff, #a0f0ff, #d6b4fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .typed-container {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin: 30px 0 20px;
+      min-height: 80px;
+      color: #cbd5e0;
+    }
+
+    .badge-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 30px 0;
+    }
+    .badge {
+      background: rgba(0, 247, 255, 0.1);
+      backdrop-filter: blur(4px);
+      border: 1px solid #00f7ff60;
+      padding: 8px 22px;
+      border-radius: 60px;
+      font-weight: 500;
+      color: #e2e8f0;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      background: transparent;
+      border: 2px solid #00f7ff;
+      color: #00f7ff;
+      padding: 14px 40px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 0 15px #00f7ff20;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      background: #00f7ff;
+      color: #0a0c0f;
+      box-shadow: 0 0 40px #00f7ff;
+      transform: scale(1.05);
+    }
+
+    .btn-outline-light {
+      border-color: #b794f4;
+      color: #b794f4;
+      box-shadow: 0 0 15px #b794f420;
+    }
+    .btn-outline-light:hover {
+      background: #b794f4;
+      color: #0a0c0f;
+      box-shadow: 0 0 40px #b794f4;
+    }
+
+    /* skills cloud */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .skill-chip {
+      background: #131f2a;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-size: 1.2rem;
+      font-weight: 500;
+      border: 1px solid #00f7ff30;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+      box-shadow: 0 5px 15px #00000050;
+    }
+
+    .skill-chip i {
+      color: #00f7ff;
+      font-size: 1.5rem;
+    }
+
+    .skill-chip:hover {
+      border-color: #00f7ff;
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 15px 30px #00f7ff20;
+    }
+
+    /* experience cards */
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .exp-card {
+      padding: 40px;
+      background: rgba(20, 30, 40, 0.4);
+      backdrop-filter: blur(8px);
+      border-radius: 40px;
+      border-left: 6px solid #00f7ff;
+      transition: 0.3s;
+    }
+
+    .exp-card:hover {
+      border-left-color: #b794f4;
+      transform: translateX(10px);
+      box-shadow: -10px 10px 30px #00000080;
+    }
+
+    .exp-card h3 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+
+    .exp-meta {
+      display: flex;
+      gap: 30px;
+      color: #b0c4de;
+      margin-bottom: 20px;
+    }
+
+    .exp-card ul {
+      list-style: none;
+    }
+    .exp-card li {
+      margin-bottom: 12px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .exp-card li i {
+      color: #00f7ff;
+      font-size: 1.2rem;
+      width: 24px;
+    }
+
+    /* projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .project-tile {
+      background: rgba(25, 35, 45, 0.5);
+      backdrop-filter: blur(10px);
+      border-radius: 30px;
+      padding: 30px;
+      border: 1px solid #2d4055;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-tile:hover {
+      border-color: #00f7ff;
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px -15px #00f7ff40;
+    }
+
+    .project-tile h3 {
+      font-size: 1.9rem;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #fff, #b0f0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .stack-tag {
+      background: #1e2c3a;
+      padding: 6px 18px;
+      border-radius: 60px;
+      font-size: 0.9rem;
+      border: 1px solid #3e5569;
+    }
+
+    .play-badge {
+      margin-top: auto;
+    }
+    .play-badge img {
+      height: 42px;
+      transition: 0.2s;
+      filter: drop-shadow(0 0 10px #00f7ff80);
+    }
+
+    /* contact strip */
+    .contact-links {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 60px 0 30px;
+    }
+    .contact-link {
+      font-size: 2.5rem;
+      color: #a0b8cc;
+      transition: 0.2s;
+    }
+    .contact-link:hover {
+      color: #00f7ff;
+      transform: translateY(-8px) scale(1.2);
+    }
+
+    .wave {
+      display: inline-block;
+      animation: wave 2s infinite;
+      transform-origin: 70% 70%;
+    }
+    @keyframes wave {
+      0% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+      60% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0 60px;
+      color: #6c7a8a;
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="bg-orb"></div>
+  <div class="bg-orb2"></div>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+      <div class="hero-content" data-speed="0.8">
+        <div class="badge-strip">
+          <span class="badge"><i class="fas fa-map-pin"></i> Dubai / Pakistan</span>
+          <span class="badge"><i class="fas fa-users"></i> 50k+ users</span>
+          <span class="badge"><i class="fas fa-rocket"></i> 3+ years</span>
+        </div>
+        <h1>Naseer Ahmed</h1>
+        <div class="typed-container">
+          <span id="typed"></span>
+        </div>
+        <p style="font-size: 1.3rem; max-width: 600px; color: #b7c9e0; margin: 30px 0;">
+          Senior Flutter developer · cross-platform expert · I craft high-performance apps used by thousands.
+        </p>
+        <div class="btn-group">
+          <a href="#projects" class="btn"><i class="fas fa-arrow-down"></i> View work</a>
+          <a href="mailto:enginer7299@gmail.com" class="btn btn-outline-light"><i class="fas fa-paper-plane"></i> Contact</a>
+        </div>
+        <div style="display: flex; gap: 30px; margin-top: 50px;">
+          <a href="https://www.linkedin.com/in/naseer-ahmed-b17362229/" target="_blank" style="color:#0a66c2; font-size: 2rem;"><i class="fab fa-linkedin"></i></a>
+          <a href="https://play.google.com/store/apps/dev?id=5122096282083078590" target="_blank" style="color:#3ddc84; font-size: 2rem;"><i class="fab fa-google-play"></i></a>
+          <a href="mailto:enginer7299@gmail.com" style="color:#ea4335; font-size: 2rem;"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/mr-luckey" target="_blank" style="color:#fff; font-size: 2rem;"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <img src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif" alt="coding" class="hero-gif" data-speed="1.2">
+    </section>
+
+    <!-- ABOUT / SKILLS -->
+    <section id="skills">
+      <h2>⚡ precision toolkit</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+        <div class="glass" style="padding: 40px;">
+          <p style="font-size: 1.2rem; line-height: 1.7;">I architect and build cross-platform apps that are used by 50,000+ active users. Through BLoC, GetX, and rigorous optimization, I've slashed crash rates by 25% and boosted smoothness. I also mentor developers and integrate complex backends (Node.js, Firebase, MongoDB).</p>
+          <p style="margin-top: 25px; font-size: 1.3rem;"><span class="wave">👋</span> <strong style="color:#00f7ff;">Error solving is my favorite hobby</strong></p>
+        </div>
+        <div class="skills-grid">
+          <span class="skill-chip"><i class="devicon-flutter-plain colored"></i> Flutter</span>
+          <span class="skill-chip"><i class="devicon-dart-plain colored"></i> Dart</span>
+          <span class="skill-chip"><i class="devicon-kotlin-plain colored"></i> Kotlin</span>
+          <span class="skill-chip"><i class="devicon-swift-plain colored"></i> Swift</span>
+          <span class="skill-chip"><i class="devicon-firebase-plain colored"></i> Firebase</span>
+          <span class="skill-chip"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
+          <span class="skill-chip"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
+          <span class="skill-chip"><i class="fas fa-code"></i> BLoC/GetX</span>
+          <span class="skill-chip"><i class="fab fa-git-alt"></i> Git</span>
+          <span class="skill-chip"><i class="fas fa-paint-brush"></i> Figma</span>
+          <span class="skill-chip"><i class="fas fa-database"></i> SQLite</span>
+          <span class="skill-chip"><i class="fas fa-cloud"></i> CI/CD</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h2>💼 experience</h2>
+      <div class="exp-grid">
+        <div class="exp-card" data-tilt data-tilt-max="3" data-tilt-glare data-tilt-scale="1.02">
+          <h3>SRU Business Group · Dubai</h3>
+          <div class="exp-meta"><span><i class="far fa-calendar-alt"></i> 2023 – present</span><span>Flutter Engineer</span></div>
+          <ul>
+            <li><i class="fas fa-caret-right"></i> Architected 3+ apps for 50k+ users; reduced crash rates by 25% via BLoC/GetX & widget optimization.</li>
+            <li><i class="fas fa-caret-right"></i> Integrated Stripe, PayPal, in‑app purchases; managed CI/CD for stores.</li>
+            <li><i class="fas fa-caret-right"></i> Mentored 4 juniors, cutting production bugs by 30%.</li>
+          </ul>
+        </div>
+        <div class="exp-card" data-tilt data-tilt-max="3" data-tilt-glare>
+          <h3>Cubic · Haripur</h3>
+          <div class="exp-meta"><span><i class="far fa-calendar-alt"></i> 2022 – 2023</span><span>Cross‑Platform Dev</span></div>
+          <ul>
+            <li><i class="fas fa-caret-right"></i> Built Android apps (Flutter/Kotlin) with Google Maps & SQLite.</li>
+            <li><i class="fas fa-caret-right"></i> Modular clean architecture for healthcare app, reduced tech debt by 40%.</li>
+            <li><i class="fas fa-caret-right"></i> Firebase Cloud Functions, Storage; pixel‑perfect UIs from Figma.</li>
+          </ul>
+        </div>
+        <div class="exp-card" data-tilt data-tilt-max="3">
+          <h3>Giga Developer · Haripur</h3>
+          <div class="exp-meta"><span><i class="far fa-calendar-alt"></i> 2021 – 2022</span><span>Flutter Developer</span></div>
+          <ul>
+            <li><i class="fas fa-caret-right"></i> Agile team – shipped features following full SDLC; unit & widget testing.</li>
+            <li><i class="fas fa-caret-right"></i> Converted Figma mockups into clean Flutter code; feature ownership.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS (featured, no trophies) -->
+    <section id="projects">
+      <h2>🚀 featured projects</h2>
+      <div class="projects-grid">
+        <!-- Pure Net VPN -->
+        <div class="project-tile" data-tilt data-tilt-max="4" data-tilt-glare>
+          <h3>Pure Net VPN</h3>
+          <p style="color: #b0c5d4;">Fast, secure VPN with dynamic servers, no‑logs, battery efficient.</p>
+          <div class="project-stack">
+            <span class="stack-tag">Flutter</span><span class="stack-tag">BLoC</span><span class="stack-tag">OpenVPN</span>
+          </div>
+          <div class="play-badge"><a href="https://play.google.com/store/apps/details?id=com.errorbite.PureNetVPN" target="_blank"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Play Store"></a></div>
+        </div>
+        <!-- Unblocked Me Pro -->
+        <div class="project-tile" data-tilt data-tilt-max="4">
+          <h3>Unblocked Me Pro</h3>
+          <p>Brain‑teaser puzzle game, dynamic levels, leaderboards, rewarded ads.</p>
+          <div class="project-stack"><span class="stack-tag">GetX</span><span class="stack-tag">SQLite</span><span class="stack-tag">Lottie</span></div>
+          <div class="play-badge"><a href="https://play.google.com/store/apps/details?id=com.appware.blocked" target="_blank"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Play Store"></a></div>
+        </div>
+        <!-- Todo Xpert -->
+        <div class="project-tile" data-tilt data-tilt-max="4">
+          <h3>Todo Xpert</h3>
+          <p>Offline‑first task manager with cloud sync, reminders, rich features.</p>
+          <div class="project-stack"><span class="stack-tag">Provider</span><span class="stack-tag">Hive</span><span class="stack-tag">Firebase</span></div>
+          <div class="play-badge"><a href="https://play.google.com/store/apps/details?id=com.appware.ToDoXpert" target="_blank"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Play Store"></a></div>
+        </div>
+        <!-- Cloud Spot Music -->
+        <div class="project-tile" data-tilt data-tilt-max="4">
+          <h3>Cloud Spot Music</h3>
+          <p>Music streaming, background playback, offline encrypted, AI recommendations.</p>
+          <div class="project-stack"><span class="stack-tag">BLoC</span><span class="stack-tag">just_audio</span><span class="stack-tag">Algolia</span></div>
+          <div class="play-badge"><a href="https://play.google.com/store/apps/details?id=com.appware.cloudSpot" target="_blank"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Play Store"></a></div>
+        </div>
+        <!-- Deutsch Pro -->
+        <div class="project-tile" data-tilt data-tilt-max="4">
+          <h3>Deutsch Pro</h3>
+          <p>Learn German with TTS, quizzes, progress tracking, Rive animations.</p>
+          <div class="project-stack"><span class="stack-tag">GetX</span><span class="stack-tag">TTS</span><span class="stack-tag">Rive</span></div>
+          <div class="play-badge"><a href="https://play.google.com/store/apps/details?id=com.appwaretech.GermanLanguageLearningApp" target="_blank"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Play Store"></a></div>
+        </div>
+        <!-- Kids Learning -->
+        <div class="project-tile" data-tilt data-tilt-max="4">
+          <h3>Kids Learning</h3>
+          <p>Toddler educational app, interactive games, multilingual, parental gate.</p>
+          <div class="project-stack"><span class="stack-tag">audioplayers</span><span class="stack-tag">Lottie</span></div>
+          <div class="play-badge"><a href="https://play.google.com/store/apps/details?id=com.appware.kidlearning" target="_blank"><img src="https://img.shields.io/badge/Google_Play-414141?style=for-the-badge&logo=google-play&logoColor=white" alt="Play Store"></a></div>
+        </div>
+        <!-- two private ones (no play badge) -->
+        <div class="project-tile" data-tilt data-tilt-max="4">
+          <h3>XPTIDE Fitness</h3>
+          <p>Personal trainer app with custom plans, video demos, Stripe (private).</p>
+          <div class="project-stack"><span class="stack-tag">Riverpod</span><span class="stack-tag">Stripe</span><span class="stack-tag">video_player</span></div>
+        </div>
+        <div class="project-tile" data-tilt data-tilt-max="4">
+          <h3>Care Pilot Pro</h3>
+          <p>Healthcare assistant, medication reminders, caregiver mode (private).</p>
+          <div class="project-stack"><span class="stack-tag">BLoC</span><span class="stack-tag">FCM</span><span class="stack-tag">QR</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" style="border-bottom: none; text-align: center;">
+      <h2 style="text-align: center;">📫 let’s connect</h2>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/naseer-ahmed-b17362229/" target="_blank" class="contact-link"><i class="fab fa-linkedin"></i></a>
+        <a href="https://play.google.com/store/apps/dev?id=5122096282083078590" target="_blank" class="contact-link"><i class="fab fa-google-play"></i></a>
+        <a href="mailto:enginer7299@gmail.com" class="contact-link"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/mr-luckey" target="_blank" class="contact-link"><i class="fab fa-github"></i></a>
+      </div>
+      <p style="font-size: 1.4rem; margin-top: 30px; background: linear-gradient(135deg,#a0f0ff,#b794f4); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">enginer7299@gmail.com</p>
+      <footer>
+        <p>⭐️ from Naseer Ahmed · #challengeAccepted · winning design</p>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Initialize GSAP ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+    
+    // Parallax effect on hero elements
+    gsap.to('.hero-gif', {
+      y: 50,
+      ease: 'power1.out',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 1
+      }
+    });
+
+    // Fade-in sections on scroll
+    gsap.utils.toArray('section').forEach(section => {
+      gsap.from(section, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 85%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+    });
+
+    // Typed.js effect
+    new Typed('#typed', {
+      strings: [
+        'Senior Flutter Developer',
+        '3+ years · cross‑platform',
+        'BLoC · GetX · Firebase',
+        '50k+ active users'
+      ],
+      typeSpeed: 60,
+      backSpeed: 30,
+      backDelay: 1500,
+      loop: true,
+      showCursor: true,
+      cursorChar: '▎'
+    });
+
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+    });
+    document.addEventListener('mouseleave', () => cursor.style.opacity = 0);
+    document.addEventListener('mouseenter', () => cursor.style.opacity = 1);
+
+    // Vanilla tilt for cards
+    VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
+      max: 5,
+      speed: 400,
+      glare: true,
+      'max-glare': 0.3,
+    });
+
+    // Skill chips hover animation (GSAP)
+    document.querySelectorAll('.skill-chip').forEach((chip, i) => {
+      chip.addEventListener('mouseenter', () => {
+        gsap.to(chip, { scale: 1.1, duration: 0.2, ease: 'backOut' });
+      });
+      chip.addEventListener('mouseleave', () => {
+        gsap.to(chip, { scale: 1, duration: 0.2 });
+      });
+    });
+  </script>
+
+  <!-- typed.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- devicon for vector icons (optional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+</body>
+</html>
