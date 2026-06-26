@@ -12,7 +12,7 @@
 <img align="right" alt="Coding" width="400" src="https://cdn.dribbble.com/users/1162077/screenshots/3848914/programmer.gif" />
  👨‍💻 About Me
 
-I'm a **Senior Flutter Developer** with over 3 years of experience building high-performance, cross-platform mobile applications. I have a proven track record of leading technical initiatives, integrating complex backends (Node.js, MongoDB, Firebase), and delivering feature-complete apps used by **50,000+ active users**. I specialize in advanced state management (BLoC, GetX, Provider) and have successfully reduced crash rates by **25%+** through optimization and best practices.
+I'm a **Senior Flutter Developer** with over 5 years of experience building high-performance, cross-platform mobile applications. I have a proven track record of leading technical initiatives, integrating complex backends (Node.js, MongoDB, Firebase), and delivering feature-complete apps used by **50,000+ active users**. I specialize in advanced state management (BLoC, GetX, Provider) and have successfully reduced crash rates by **25%+** through optimization and best practices.
 
 - 🔭 I’m currently working on **[DEUTSCH PRO](https://play.google.com/store/apps/details?id=com.appwaretech.GermanLanguageLearningApp)**  
 - 🌱 I’m currently learning **Sockets, GETX, and advanced Flutter patterns**  
