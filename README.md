@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20👋,%20I'm%20Naseer%20Ahmed;Senior%20Flutter%20Developer;5+%20Years%20Experience%20|%20Cross-Platform%20Expert&center=true&width=500&height=45">
+  <img src="https://readme-typing-svg.herokuapp.com/?lines=Hi%20👋,%20I'm%20Naseer%20Ahmed;Senior%20Flutter%20Developer;6+%20Years%20Experience%20|%20Cross-Platform%20Expert&center=true&width=500&height=45">
 </h1>
 
 <p align="center">
